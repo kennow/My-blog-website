@@ -1,0 +1,23 @@
+
+#entry{
+    width: 400px;
+    height: 300px;
+    background: rgba(97,97,97,.3);
+}
+#root{
+    background: linear-gradient(#f0f8ff, #00bfff);
+}
+#entry p{
+    background: rgba(154,154,154,.8);
+    color: #FFFFFF;
+    line-height: 40px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+#entry a{
+    color: inherit;
+}
+#entry p:hover{
+    background: rgba(154,154,154,.5);
+    color: #333333;
+}
