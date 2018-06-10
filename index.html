@@ -9,8 +9,8 @@
     <meta name="keywords" content="mapbar_front，前端，个人网站，博客，记录，随笔...">
     <link rel="icon" href="http://www.barretlee.com/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="./public/common.css">
-    <link rel="stylesheet" href="./public/index.css">
+    <link rel="stylesheet" href="./public/css/common.css">
+    <link rel="stylesheet" href="./public/css/index.css">
 </head>
 <body>
     <div id="root" class="center">
@@ -37,4 +37,43 @@
         </div>
     </div>
 </body>
+<script>
+    function ajax(options) {
+        var type = options.type || 'GET';
+        var url = options.url;
+        var sucFun = options.sucFun;
+        var params = options.data || {};
+        var data = new FormData();
+        if(type == 'POST'){
+            for(var item in params){
+                data.append(item, params[item]);
+            }
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open(type,url,true);
+        xhr.send(data);
+        xhr.onreadystatechange = function (e) {
+            if((xhr.readyState==4) && (xhr.status == 200)){
+                console.log(JSON.parse(xhr.response));
+                var data = JSON.parse(xhr.response);
+                sucFun && sucFun(data)
+            }
+        }
+    }
+    ajax({
+       type: 'POST',
+        url: 'http://192.168.1.106:8080/book/addbook',
+        data: {
+            author: '张三',
+            sex: 1,
+            title: '我的完美世界',
+            price: 44
+        },
+        sucFun: function (data) {
+            console.log(data);
+        }
+    })
+
+</script>
 </html>
